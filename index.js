@@ -32,6 +32,10 @@ app.use("/file", fileRouter);
 
 app.use("/product", isValidToken, productRoute);
 
+app.get("/", (req, res) => {
+  res.send("<h2>Success</h2>");
+});
+
 app.use("/", (req, res) => {
   return res.status(404).json({ message: "page not found" });
 });

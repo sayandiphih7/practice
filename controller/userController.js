@@ -5,7 +5,6 @@ const { ErrorHandelerClass } = require("../middleware/errorHandeler");
 const getAllUser = async (req, res) => {
   try {
     const { userInfo } = req;
-    console.log(process.env.mode);
     // const pageNumber = parseInt(req.quary.pageNumber) || 1;
     // const dataLimit = parseInt(req.quary.dataLimit) || 2;
     // const skip = pageNumber - 1 * skip;
@@ -14,14 +13,14 @@ const getAllUser = async (req, res) => {
     // const totalUser = await User.countDocuments();
     // const totalPages = Math.ceil(totalUser / dataLimit);
 
-    // const allUser = await User.find().sort({ name: 11 }).skip(1).limit(2);
-    const allUser = await User.aggregate([
-      {
-        $match: {
-          $expr: { $gt: [{ $strLenCP: "$name" }, 2] },
-        },
-      },
-    ]);
+    const allUser = await User.find();
+    // const allUser = await User.aggregate([
+    //   {
+    //     $match: {
+    //       $expr: { $gt: [{ $strLenCP: "$name" }, 2] },
+    //     },
+    //   },
+    // ]);
 
     res
       .status(200)
@@ -44,7 +43,6 @@ const getAllUser = async (req, res) => {
 const createUser = async (req, res, next) => {
   try {
     const { name, email, password, role } = req.body;
-    console.log(name.a, email, password, role);
     if (!name || !email || !password) {
       // res.status(400).json({ messege: "please provide all the credential" });
       return next(

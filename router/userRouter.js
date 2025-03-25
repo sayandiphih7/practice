@@ -10,10 +10,7 @@ const { authValidate } = require("../middleware/authorizationValidate");
 
 const userRouter = express.Router();
 
-userRouter
-  .route("/")
-  .get(isValidToken, authValidate(["admin"]), getAllUser)
-  .post(createUser);
+userRouter.route("/").get(isValidToken, getAllUser).post(createUser);
 
 userRouter.route("/login").post(loginUser);
 
