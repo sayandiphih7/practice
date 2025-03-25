@@ -21,6 +21,7 @@ app.use(
     // origin: [process.env.frontendUrl],
     origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Authorization", "Content-Type"],
     credentials: true,
   })
 );
